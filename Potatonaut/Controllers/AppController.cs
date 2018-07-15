@@ -8,10 +8,9 @@ namespace Potatonaut.Controllers
 {
     public class AppController : Controller
     {        
-        [HttpGet]
-        public string Welcome()
+        public IActionResult Welcome()
         {
-            return ("Hello there!");
+            return View();
         }        
     }
 }
