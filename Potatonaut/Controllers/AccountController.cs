@@ -43,6 +43,13 @@ namespace Potatonaut.Controllers
         }
 
         [HttpPost]
+        public async Task<IActionResult> Logout()
+        {
+            await _signInManager.SignOutAsync();
+            return RedirectToAction("App", "Welcome");
+        }
+
+        [HttpPost]
         public async Task<IActionResult> Login(LoginViewModel loginViewModel)
         {
             if (!ModelState.IsValid)
