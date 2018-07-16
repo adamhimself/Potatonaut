@@ -26,6 +26,7 @@ namespace Potatonaut
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+            
             //services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
@@ -40,6 +41,7 @@ namespace Potatonaut
             {
                 app.UseHsts();
             }
+            app.UseStaticFiles();
 
             //app.UseHttpsRedirection();
             app.UseMvc(routes => 
