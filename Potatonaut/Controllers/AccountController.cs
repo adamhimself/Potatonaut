@@ -25,6 +25,11 @@ namespace Potatonaut.Controllers
             return View();
         }
 
+        public IActionResult Register()
+        {
+            return View();
+        }
+
         [HttpPost]
         public async Task<IActionResult> Register(LoginViewModel loginViewModel)
         {

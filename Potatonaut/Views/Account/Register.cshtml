@@ -1,11 +1,10 @@
 ﻿@model Potatonaut.ViewModels.LoginViewModel
 
 <h2>
-    Please log in
-    <a asp-action="Register" asp-controller="Account">register!</a>
+    Please Register
 </h2>
 
-<form asp-action="Login" asp-controller="Account" method="post">
+<form asp-action="Register" asp-controller="Account" method="post">
     <div asp-validation-summary="All" class="text-danger"></div>
 
     <div class="form-group">
@@ -26,7 +25,7 @@
 
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
-            <input type="submit" class="btn btn-primary" value="Log in" />
+            <input type="submit" class="btn btn-primary" value="Register" />
         </div>
     </div>
 </form>
