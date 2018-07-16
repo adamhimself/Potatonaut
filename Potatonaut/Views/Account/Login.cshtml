@@ -1,2 +1,16 @@
-﻿@{
-}
+﻿@model Potatonaut.ViewModels.LoginViewModel
+
+<h2>
+    Please log in
+    <a asp-action="Register" asp-controller="Account">register!</a>
+</h2>
+
+<form asp-action="Login" asp-controller="Account" method="post">
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <div class="form-group">
+        <label asp-for="UserName" class="col-md-2 control-label"></label>
+    </div>
+
+
+</form>
