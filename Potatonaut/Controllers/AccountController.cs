@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Potatonaut.ViewModels;
 
 namespace Potatonaut.Controllers
 {
@@ -22,6 +23,31 @@ namespace Potatonaut.Controllers
         public IActionResult Login()
         {
             return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Login(LoginViewModel loginViewModel)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(loginViewModel);
+            }
+
+            var user = await _userManager.FindByNameAsync(loginViewModel.UserName);
+
+            if (user != null)
+            {
+                var result = await
+                    _signInManager.PasswordSignInAsync(
+                        user, loginViewModel.Password, false, false);
+
+                if (result.Succeeded)
+                {
+                    return RedirectToAction("Dashboard", "App");
+                }
+            }
+            ModelState.AddModelError("", "User name/password not found");
+            return View(loginViewModel);
         }
     }
 }
