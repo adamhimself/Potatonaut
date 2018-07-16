@@ -26,6 +26,23 @@ namespace Potatonaut.Controllers
         }
 
         [HttpPost]
+        public async Task<IActionResult> Register(LoginViewModel loginViewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = new IdentityUser()
+                    { UserName = loginViewModel.UserName };
+                var result = await _userManager.CreateAsync(user, loginViewModel.Password);
+
+                if (result.Succeeded)
+                {
+                    return RedirectToAction("Dashboard", "App");
+                }
+            }
+            return View(loginViewModel);
+        }
+
+        [HttpPost]
         public async Task<IActionResult> Login(LoginViewModel loginViewModel)
         {
             if (!ModelState.IsValid)
