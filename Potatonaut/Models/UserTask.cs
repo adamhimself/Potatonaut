@@ -5,11 +5,11 @@ using System.Threading.Tasks;
 
 namespace Potatonaut.Models
 {
-    public class User
+    public class UserTask
     {
         public int Id { get; set; }
-        public string Username { get; set; }
+        public string TaskName { get; set; }
 
-        public ICollection<UserTask> UserTasks { get; set; }
+        public ICollection<Entry> Entries { get; set; }
     }
 }
