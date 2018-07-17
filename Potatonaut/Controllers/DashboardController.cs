@@ -46,6 +46,8 @@ namespace Potatonaut.Controllers
                
             }
 
+            viewModel.ProductivityScore = (viewModel.TotalMinutes * 100) / (24 * 60) ;
+
             return View(viewModel);
         }
 

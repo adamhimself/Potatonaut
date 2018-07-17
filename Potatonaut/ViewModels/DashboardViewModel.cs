@@ -15,5 +15,6 @@ namespace Potatonaut.ViewModels
         public Entry Entry { get; set; }
 
         public int TotalMinutes { get; set; }
+        public double ProductivityScore { get; set; }
     }
 }
