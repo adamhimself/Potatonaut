@@ -28,12 +28,24 @@ namespace Potatonaut.Controllers
         public IActionResult Dashboard(DashboardViewModel viewModel)
         {
             var loggedUser = _userManager.GetUserAsync(User);
-            var userResult = loggedUser.Result;
-            var userId = _userManager.GetUserIdAsync(userResult).Result.ToString();
+            var userId = _userManager.GetUserIdAsync(loggedUser.Result);
 
-            var userEntries = _context.UserTasks.Where(task => task.UserId == userId)                
+            var userTasks = _context.UserTasks.Where(task => task.UserId == userId.Result.ToString())        
                 .Include(task => task.Entries).ToList();
-            viewModel.UserTasks = userEntries;
+
+            viewModel.UserTasks = userTasks;
+
+            
+
+            foreach (var task in userTasks)
+            {
+                foreach (var entry in task.Entries)
+                {
+                    viewModel.TotalMinutes += entry.Duration;
+                }
+               
+            }
+
             return View(viewModel);
         }
 
