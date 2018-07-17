@@ -1,1 +1,34 @@
 ﻿<h2>DASHBOARD</h2>
+<h3>   Todays date @DateTime.UtcNow</h3>
+<div class="jumbotron">
+    <h1 class="display-4">Today's Mission</h1>
+    <p class="lead">Here is an overview of Today's tasks and goals! Good luck Potatonaut!</p>
+    <hr class="my-4">
+    <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+    <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+</div>
+<form asp-action="AddTask" asp-controller="Account" method="post">
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <div class="form-group">
+        <label asp-for="UserName" class="col-md-2 control-label"></label>
+        <div class="col-md-10">
+            <input asp-for="UserName" class="form-control" />
+            <span asp-validation-for="UserName" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Password" class="col-md-2 control-label"></label>
+        <div class="col-md-10">
+            <input asp-for="Password" class="form-control" />
+            <span asp-validation-for="Password" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" class="btn btn-primary" value="Register" />
+        </div>
+    </div>
+</form>
