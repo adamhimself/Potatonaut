@@ -51,7 +51,7 @@ namespace Potatonaut.Controllers
         public async Task<IActionResult> Logout()
         {
             await _signInManager.SignOutAsync();
-            return RedirectToAction("App", "Welcome");
+            return RedirectToAction("Welcome", "App");
         }
 
         [HttpPost]
