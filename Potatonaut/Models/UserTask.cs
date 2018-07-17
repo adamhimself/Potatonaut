@@ -11,5 +11,8 @@ namespace Potatonaut.Models
         public string Title { get; set; }
 
         public ICollection<Entry> Entries { get; set; }
+
+        public string UserId { get; set; }
+        public AppUser User { get; set; }
     }
 }

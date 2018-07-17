@@ -11,13 +11,13 @@ namespace Potatonaut.Controllers
         public IActionResult Welcome()
         {
             return View();
-        }        
+        }
 
         public IActionResult Dashboard()
         {
             return View();
         }
 
-        
+
     }
 }

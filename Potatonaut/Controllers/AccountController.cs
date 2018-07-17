@@ -4,17 +4,18 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Potatonaut.Models;
 using Potatonaut.ViewModels;
 
 namespace Potatonaut.Controllers
 {
     public class AccountController : Controller
     {
-        private readonly SignInManager<IdentityUser> _signInManager;
-        private readonly UserManager<IdentityUser> _userManager;
+        private readonly SignInManager<AppUser> _signInManager;
+        private readonly UserManager<AppUser> _userManager;
 
-        public AccountController(SignInManager<IdentityUser> signInManager,
-            UserManager<IdentityUser> userManager)
+        public AccountController(SignInManager<AppUser> signInManager,
+            UserManager<AppUser> userManager)
         {
             _signInManager = signInManager;
             _userManager = userManager;
@@ -35,7 +36,7 @@ namespace Potatonaut.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new IdentityUser()
+                var user = new AppUser()
                     { UserName = loginViewModel.UserName };
                 var result = await _userManager.CreateAsync(user, loginViewModel.Password);
 

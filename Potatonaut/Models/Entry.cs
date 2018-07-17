@@ -13,6 +13,7 @@ namespace Potatonaut.Models
         public string Note { get; set; }
         public DateTime DateOfEntry { get; set; }
 
+        public int UserTaskId { get; set; }
         public UserTask UserTask { get; set; }
     }
 
