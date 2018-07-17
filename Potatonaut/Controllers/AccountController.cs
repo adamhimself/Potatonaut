@@ -42,7 +42,7 @@ namespace Potatonaut.Controllers
 
                 if (result.Succeeded)
                 {
-                    return RedirectToAction("Dashboard", "App");
+                    return RedirectToAction("Dashboard", "Dashboard");
                 }
             }
             return View(loginViewModel);
@@ -73,7 +73,7 @@ namespace Potatonaut.Controllers
 
                 if (result.Succeeded)
                 {
-                    return RedirectToAction("Dashboard", "App");
+                    return RedirectToAction("Dashboard", "Dashboard");
                 }
             }
             ModelState.AddModelError("", "User name/password not found");

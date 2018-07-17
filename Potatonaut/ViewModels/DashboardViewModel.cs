@@ -12,5 +12,6 @@ namespace Potatonaut.ViewModels
         
         public UserTask UserTask { get; set; }
         public AppUser User { get; set; }
+        public Entry Entry { get; set; }
     }
 }

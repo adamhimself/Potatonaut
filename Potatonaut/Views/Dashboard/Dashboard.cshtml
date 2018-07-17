@@ -25,3 +25,34 @@
         </div>
     </div>
 </form>
+<div>
+    <h2>List of tasks</h2>
+        @foreach (var task in Model.UserTasks)
+        {
+            <h3>@task.Title</h3>
+            <form asp-action="AddMinutes" asp-controller="Dashboard" method="post">
+                <div class="col-md-offset-2 col-md-4">
+                    <input type="hidden" asp-for="Entry.UserTaskId" value="@task.Id" />
+                    <input asp-for="Entry.Duration" class="form-control" />
+                    <input type="submit" class="btn btn-primary" value="Add Minutes" />
+                    
+                </div>
+                <div class="col-md-4">
+                    <h4></h4>
+                    @if (task.Entries != null)
+                    {
+                        foreach (var entry in task.Entries)
+                        {
+                            <p>@entry.Duration</p>
+                        }
+                    }
+                    else
+                    {
+                        <h3>No entries added</h3>
+
+                    }
+                </div>
+            </form>
+        }
+    
+</div>

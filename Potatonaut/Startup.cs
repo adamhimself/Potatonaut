@@ -67,7 +67,7 @@ namespace Potatonaut
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=App}/{action=Dashboard}");
+                    template: "{controller=App}/{action=Welcome}");
                     
             });
         }
