@@ -59,6 +59,15 @@ namespace Potatonaut.Controllers
         }
 
         [HttpPost]
+        public async Task<IActionResult> DeleteEntry(int id)
+        {
+            var entry = await _context.Entries.FirstOrDefaultAsync(m => m.Id == id);
+            _context.Entries.Remove(entry);
+            await _context.SaveChangesAsync();
+            return RedirectToAction("Dashboard", "Dashboard");
+        }
+
+        [HttpPost]
         public async Task<IActionResult> AddTask(UserTask userTask)
         {
             if (!ModelState.IsValid)

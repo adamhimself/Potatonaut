@@ -1,4 +1,4 @@
-﻿@model Potatonaut.ViewModels.DashboardViewModel
+﻿@model DashboardViewModel
 
 <h2>DASHBOARD</h2>
 <h3>   Todays date @DateTime.UtcNow</h3>
@@ -33,7 +33,13 @@
         <ul>
             @foreach (var entry in Model.UserEntries)
             {
-                <li>@entry.UserTask.Title @entry.DateOfEntry : @entry.Duration</li>
+                <li>
+                    @entry.UserTask.Title @entry.DateOfEntry : @entry.Duration 
+                    <form method="post" asp-action="DeleteEntry" asp-controller="Dashboard">
+                        <input name="id" asp-for="Entry.Id" type="hidden" value="@entry.Id"/>
+                        <input type="submit" value="delete"/>
+                    </form>
+                </li>
             }
         </ul>
     }
