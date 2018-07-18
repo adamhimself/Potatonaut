@@ -5,7 +5,8 @@
 <div class="jumbotron">
     <h1 class="display-4">Today's Mission</h1>
     <p class="lead">Here is an overview of Today's tasks and goals! Good luck Potatonaut!</p>
-    <h2>Current Productivity Score: @Model.ProductivityScore</h2>
+    <h3>Yesterday's Productivity Score: @Model.YesterdayProductivityScore</h3>
+    <h3>Today's Productivity Score: @Model.TodayProductivityScore</h3>
     <hr class="my-4">
     <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
     <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
@@ -34,9 +35,9 @@
             @foreach (var entry in Model.UserEntries)
             {
                 <li>
-                    @entry.UserTask.Title @entry.DateOfEntry : @entry.Duration 
+                    @entry.UserTask.Title @entry.DateOfEntry.Date.ToShortDateString() : @entry.Duration 
                     <form method="post" asp-action="DeleteEntry" asp-controller="Dashboard">
-                        <input name="id" asp-for="Entry.Id" type="hidden" value="@entry.Id"/>
+                        <input name="id" type="hidden" value="@entry.Id"/>
                         <input type="submit" value="delete"/>
                     </form>
                 </li>

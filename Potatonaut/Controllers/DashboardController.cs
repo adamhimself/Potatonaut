@@ -41,19 +41,28 @@ namespace Potatonaut.Controllers
             viewModel.UserEntries = userEntries;
 
             var todayUserEntries = userEntries.Where(entry => entry.DateOfEntry.Date == DateTime.UtcNow.Date).ToList();
+            var yesterdayUserEntries = userEntries.Where(entry => entry.DateOfEntry.Date == DateTime.UtcNow.Date.AddDays(-1)).ToList();
+
             viewModel.TodayUserEntries = todayUserEntries;
 
             viewModel.UserTasks = userTasks;
 
-            foreach (var task in userTasks)
+            int TodayTotalMinutes = 0;
+            int YesterdayTotalMinutes = 0;
+
+            foreach (var entry in yesterdayUserEntries)
             {
-                foreach (var entry in task.Entries)
-                {
-                    viewModel.TotalMinutes += entry.Duration;
-                }               
+                YesterdayTotalMinutes += entry.Duration;
             }
 
-            viewModel.ProductivityScore = (viewModel.TotalMinutes * 100) / (24 * 60) ;
+            foreach (var entry in todayUserEntries)
+            {
+                TodayTotalMinutes += entry.Duration;        
+            }
+
+            viewModel.YesterdayProductivityScore = (YesterdayTotalMinutes * 100) / (24 * 60);
+            viewModel.TodayProductivityScore = (TodayTotalMinutes * 100) / (24 * 60);
+
 
             return View(viewModel);
         }
