@@ -10,7 +10,7 @@ using Potatonaut.Models;
 namespace Potatonaut.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20180717123404_Initial")]
+    [Migration("20180717200136_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -128,27 +128,7 @@ namespace Potatonaut.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("Potatonaut.Models.Entry", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<DateTime>("DateOfEntry");
-
-                    b.Property<int>("Duration");
-
-                    b.Property<string>("Note");
-
-                    b.Property<int>("UserTaskId");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserTaskId");
-
-                    b.ToTable("Entries");
-                });
-
-            modelBuilder.Entity("Potatonaut.Models.User", b =>
+            modelBuilder.Entity("Potatonaut.Models.AppUser", b =>
                 {
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd();
@@ -198,6 +178,26 @@ namespace Potatonaut.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
+            modelBuilder.Entity("Potatonaut.Models.Entry", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<DateTime>("DateOfEntry");
+
+                    b.Property<int>("Duration");
+
+                    b.Property<string>("Note");
+
+                    b.Property<int>("UserTaskId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserTaskId");
+
+                    b.ToTable("Entries");
+                });
+
             modelBuilder.Entity("Potatonaut.Models.UserTask", b =>
                 {
                     b.Property<int>("Id")
@@ -224,7 +224,7 @@ namespace Potatonaut.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("Potatonaut.Models.User")
+                    b.HasOne("Potatonaut.Models.AppUser")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -232,7 +232,7 @@ namespace Potatonaut.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("Potatonaut.Models.User")
+                    b.HasOne("Potatonaut.Models.AppUser")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -245,7 +245,7 @@ namespace Potatonaut.Migrations
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("Potatonaut.Models.User")
+                    b.HasOne("Potatonaut.Models.AppUser")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -253,7 +253,7 @@ namespace Potatonaut.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("Potatonaut.Models.User")
+                    b.HasOne("Potatonaut.Models.AppUser")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -269,7 +269,7 @@ namespace Potatonaut.Migrations
 
             modelBuilder.Entity("Potatonaut.Models.UserTask", b =>
                 {
-                    b.HasOne("Potatonaut.Models.User", "User")
+                    b.HasOne("Potatonaut.Models.AppUser", "User")
                         .WithMany("UserTasks")
                         .HasForeignKey("UserId");
                 });
