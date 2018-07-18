@@ -67,7 +67,6 @@ namespace Potatonaut.Controllers
             return View(viewModel);
         }
 
-        [HttpPost]
         public async Task<IActionResult> DeleteEntry(int id)
         {
             var entry = await _context.Entries.FirstOrDefaultAsync(m => m.Id == id);

@@ -36,10 +36,7 @@
             {
                 <li>
                     @entry.UserTask.Title @entry.DateOfEntry.Date.ToShortDateString() : @entry.Duration 
-                    <form method="post" asp-action="DeleteEntry" asp-controller="Dashboard">
-                        <input name="id" type="hidden" value="@entry.Id"/>
-                        <input type="submit" value="delete"/>
-                    </form>
+                    <a asp-action="DeleteEntry" asp-route-id="@entry.Id">Delete</a>
                 </li>
             }
         </ul>
@@ -71,19 +68,6 @@
                 <input type="hidden" asp-for="Entry.UserTaskId" value="@task.Id" />
                 <input asp-for="Entry.Duration" class="form-control" type="text" />
                 <input type="submit" class="btn btn-primary" value="Add Minutes" />
-            </div>
-            <div class="col-md-12">
-                @if (task.Entries != null)
-                {
-                    foreach (var entry in task.Entries)
-                    {
-                        <p>@entry.Duration</p>
-                    }
-                }
-                else
-                {
-                    <h3>No entries added</h3>
-                }
             </div>
         </form>
     }
