@@ -38,11 +38,10 @@ namespace Potatonaut.Controllers
             var todaysDate = DateTime.UtcNow.Date;
 
             var userEntries = _context.Entries.ToList();
+            viewModel.UserEntries = userEntries;
 
             var todayUserEntries = userEntries.Where(entry => entry.DateOfEntry.Date == DateTime.UtcNow.Date).ToList();
             viewModel.TodayUserEntries = todayUserEntries;
-
-            //var todayUserTasks = userTasks.Where(e => e.Entries.Where(t => t.DateOfEntry.Date == DateTime.UtcNow.Date).ToList());
 
             viewModel.UserTasks = userTasks;
 
