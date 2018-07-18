@@ -32,8 +32,17 @@ namespace Potatonaut.Controllers
             var loggedUser = _userManager.GetUserAsync(User);
             var userId = _userManager.GetUserIdAsync(loggedUser.Result);
 
-            var userTasks = _context.UserTasks.Where(task => task.UserId == userId.Result.ToString())        
+            var userTasks = _context.UserTasks.Where(task => task.UserId == userId.Result.ToString())
                 .Include(task => task.Entries).ToList();
+
+            var todaysDate = DateTime.UtcNow.Date;
+
+            var userEntries = _context.Entries.ToList();
+
+            var todayUserEntries = userEntries.Where(entry => entry.DateOfEntry.Date == DateTime.UtcNow.Date).ToList();
+            viewModel.TodayUserEntries = todayUserEntries;
+
+            //var todayUserTasks = userTasks.Where(e => e.Entries.Where(t => t.DateOfEntry.Date == DateTime.UtcNow.Date).ToList());
 
             viewModel.UserTasks = userTasks;
 
