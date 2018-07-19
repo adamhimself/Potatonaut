@@ -67,6 +67,12 @@ namespace Potatonaut.Controllers
             return View(viewModel);
         }
 
+        public IActionResult Goals(GoalsViewModel viewModel)
+        {
+            viewModel.Goals = new List<Goal>();
+            return View(viewModel);
+        }
+
         public async Task<IActionResult> DeleteEntry(int id)
         {
             var entry = await _context.Entries.FirstOrDefaultAsync(m => m.Id == id);

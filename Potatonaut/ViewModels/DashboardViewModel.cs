@@ -9,9 +9,10 @@ namespace Potatonaut.ViewModels
     public class DashboardViewModel
     {
         public ICollection<UserTask> UserTasks { get; set; }
-
+        public ICollection<Goal> Goals { get; set; }
         public ICollection<Entry> UserEntries { get; set; }
         public ICollection<Entry> TodayUserEntries { get; set; }
+
 
         public UserTask UserTask { get; set; }
         public AppUser User { get; set; }
