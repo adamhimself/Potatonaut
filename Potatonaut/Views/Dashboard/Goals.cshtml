@@ -1,8 +1,25 @@
 ﻿@model GoalsViewModel
 <h3>Goals</h3>
 <h4>Here is where you can set and manage your goals!</h4>
+<div>
+    <form method="post" asp-action="AddGoal" asp-controller="Dashboard">
+        <input asp-for="Goal.Title" type="text" />
+        <input asp-for="Goal.Description" type="text" />
+        <input asp-for="Goal.EndDate" type="date" />
+        <input type="submit" value="Add Goal" />
+    </form>
+</div>
+<div>
+    @if (Model.Goals == null || Model.Goals.Count == 0)
+    {
+        <h2>No goals currently set!</h2>
+    }
+    else
+    {
+        foreach (var goal in Model.Goals)
+        {
+            <p>@goal.Title @goal.EndDate</p>
+        }
 
-@if (Model.Goals != null || Model.Goals.Count == 0)
-{
-    <h2>No goals currently set!</h2>
-}
+    }
+</div>

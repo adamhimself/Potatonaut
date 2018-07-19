@@ -18,6 +18,7 @@ namespace Potatonaut.Models
 
         public DbSet<Entry> Entries { get; set; }
         public DbSet<UserTask> UserTasks { get; set; }
+        public DbSet<Goal> Goals { get; set; }
 
     }
 }

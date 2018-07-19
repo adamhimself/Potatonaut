@@ -13,6 +13,6 @@ namespace Potatonaut.Models
         public DateTime EndDate { get; set; }
 
         public AppUser AppUser { get; set; }
-        public int AppUserId { get; set; }
+        public string AppUserId { get; set; }
     }
 }

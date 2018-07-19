@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using Potatonaut.Models;
@@ -9,9 +10,10 @@ using Potatonaut.Models;
 namespace Potatonaut.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180719212419_goalsUpdate")]
+    partial class goalsUpdate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -201,7 +203,9 @@ namespace Potatonaut.Migrations
                     b.Property<int>("GoalId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("AppUserId");
+                    b.Property<int>("AppUserId");
+
+                    b.Property<string>("AppUserId1");
 
                     b.Property<string>("Description");
 
@@ -211,7 +215,7 @@ namespace Potatonaut.Migrations
 
                     b.HasKey("GoalId");
 
-                    b.HasIndex("AppUserId");
+                    b.HasIndex("AppUserId1");
 
                     b.ToTable("Goals");
                 });
@@ -289,7 +293,7 @@ namespace Potatonaut.Migrations
                 {
                     b.HasOne("Potatonaut.Models.AppUser", "AppUser")
                         .WithMany()
-                        .HasForeignKey("AppUserId");
+                        .HasForeignKey("AppUserId1");
                 });
 
             modelBuilder.Entity("Potatonaut.Models.UserTask", b =>

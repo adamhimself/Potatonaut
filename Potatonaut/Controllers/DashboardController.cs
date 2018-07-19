@@ -69,8 +69,21 @@ namespace Potatonaut.Controllers
 
         public IActionResult Goals(GoalsViewModel viewModel)
         {
-            viewModel.Goals = new List<Goal>();
+            var loggedUser = _userManager.GetUserAsync(User);
+            var userId = _userManager.GetUserIdAsync(loggedUser.Result);
+            viewModel.Goals = _context.Goals.Where(i => i.AppUserId == userId.Result.ToString()).ToList();
             return View(viewModel);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddGoal(Goal goal)
+        {
+            var loggedUser = _userManager.GetUserAsync(User);
+            var userId = _userManager.GetUserIdAsync(loggedUser.Result);
+            goal.AppUserId = userId.Result;
+            await _context.Goals.AddAsync(goal);
+            await _context.SaveChangesAsync();
+            return RedirectToAction("Dashboard", "Goals");
         }
 
         public async Task<IActionResult> DeleteEntry(int id)
