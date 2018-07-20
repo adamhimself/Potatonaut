@@ -35,7 +35,10 @@ namespace Potatonaut.Controllers
             var userTasks = _context.UserTasks.Where(task => task.UserId == userId.Result.ToString())
                 .Include(task => task.Entries).ToList();
 
+            var userGoals = _context.Goals.Where(u => u.AppUserId == userId.Result).ToList();
+
             var todaysDate = DateTime.UtcNow.Date;
+            var endDate = DateTime.UtcNow.AddDays(24);
 
             var userEntries = _context.Entries.ToList();
             viewModel.UserEntries = userEntries;
@@ -43,7 +46,11 @@ namespace Potatonaut.Controllers
             var todayUserEntries = userEntries.Where(entry => entry.DateOfEntry.Date == DateTime.UtcNow.Date).ToList();
             var yesterdayUserEntries = userEntries.Where(entry => entry.DateOfEntry.Date == DateTime.UtcNow.Date.AddDays(-1)).ToList();
 
+
             viewModel.TodayUserEntries = todayUserEntries;
+            viewModel.Goals = userGoals;
+
+            var daysDiff = (endDate - todaysDate).Days;
 
             viewModel.UserTasks = userTasks;
 

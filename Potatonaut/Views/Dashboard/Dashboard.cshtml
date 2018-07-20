@@ -28,6 +28,20 @@
     </div>
 </form>
 <div>
+    <h2>Current goals</h2>
+    @if (Model.Goals.Count == 0)
+    {
+        <p>No current goals set</p>
+    }
+    else
+    {
+        foreach (var goal in Model.Goals)
+        {
+            <p>@goal.Title   @Convert.ToInt32(((goal.EndDate - DateTime.UtcNow).TotalDays)) days remaining @goal.EndDate.ToShortDateString()</p>
+        }
+
+    }
+
     <h4>List of all entries</h4>
     @if (Model.UserEntries != null)
     {
@@ -35,7 +49,7 @@
             @foreach (var entry in Model.UserEntries)
             {
                 <li>
-                    @entry.UserTask.Title @entry.DateOfEntry.Date.ToShortDateString() : @entry.Duration 
+                    @entry.UserTask.Title @entry.DateOfEntry.Date.ToShortDateString() : @entry.Duration
                     <a asp-action="DeleteEntry" asp-route-id="@entry.Id">Delete</a>
                 </li>
             }
